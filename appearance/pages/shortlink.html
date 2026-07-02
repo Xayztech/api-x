@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shortlink — Web Helper</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shared/css/tokens.css">
+<link rel="stylesheet" href="/shared/css/base.css">
+<link rel="stylesheet" href="/shared/css/layout.css">
+<link rel="stylesheet" href="/shared/css/components.css">
+</head>
+<body>
+<div class="scrim" data-scrim></div>
+<header class="topbar">
+  <div class="topbar-left">
+    <button class="hamburger" data-hamburger aria-label="Menu"><span></span><span></span><span></span></button>
+    <a class="brand" href="#" data-hamburger-home>
+      <span class="brand-mark emoji">🧭</span>
+      <span data-i18n="brand_name">Web Helper</span>
+    </a>
+  </div>
+  <div class="topbar-right">
+    <div class="dropdown">
+      <button class="dropdown-trigger" type="button"><span class="emoji">🎨</span><span class="dropdown-caret">▾</span></button>
+      <div class="dropdown-panel" data-theme-panel></div>
+    </div>
+    <div class="dropdown">
+      <button class="dropdown-trigger" type="button"><span class="emoji">🌐</span><span class="dropdown-caret">▾</span></button>
+      <div class="dropdown-panel" data-lang-panel></div>
+    </div>
+  </div>
+</header>
+
+<aside class="sidebar" data-sidebar>
+  <nav>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label" data-i18n="nav_general">Umum</div>
+      <a class="sidebar-link" href="/home/id" data-match="/home"><span class="emoji">🏠</span><span data-i18n="nav_home">Dashboard</span></a>
+      <a class="sidebar-link" href="/ai/id" data-match="/ai"><span class="emoji">🤖</span><span data-i18n="nav_ai">Ai</span></a>
+      <a class="sidebar-link active" href="/shortlink/id" data-match="/shortlink"><span class="emoji">🔗</span><span data-i18n="nav_shortlink">Shortlink</span></a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label" data-i18n="nav_docs">Dokumentasi</div>
+      <a class="sidebar-link" href="/docs/id" data-match="/docs"><span class="emoji">📚</span><span data-i18n="nav_docs_api">Docs API</span></a>
+    </div>
+  </nav>
+</aside>
+
+<main class="main">
+  <h1 style="font-size: 24px; margin-bottom: 6px;">🔗 Shortlink</h1>
+  <p style="margin-bottom: var(--gap-md);" data-i18n="shortlink_subtitle">Tempel tautan panjang, pilih penyedia, lalu persingkat.</p>
+
+  <div class="segmented" style="margin-bottom: var(--gap-md);" data-provider>
+    <button class="active" data-value="tinyurl">TinyURL</button>
+    <button data-value="isgd">is.gd</button>
+    <button data-value="cuttly">Cutt.ly</button>
+    <button data-value="vgd">v.gd</button>
+  </div>
+
+  <form data-shortlink-form>
+    <div class="input-row">
+      <input type="text" placeholder="https://contoh.com/tautan-yang-sangat-panjang" data-i18n-placeholder="shortlink_placeholder" required>
+      <button class="btn btn-primary" type="submit"><span class="emoji">✂️</span> <span data-i18n="btn_shorten">Persingkat</span></button>
+    </div>
+  </form>
+
+  <div class="card" data-shortlink-result style="margin-top: var(--gap-lg); display:none; cursor:pointer;" data-copy>
+    <p style="font-size: 12px; margin-bottom: 6px;" data-i18n="shortlink_tap_hint">Ketuk kotak ini untuk menyalin</p>
+    <p class="mono" style="font-size: 18px; color: var(--beacon); font-weight: 600;" data-shortlink-output>https://xy.gg/aB3dK</p>
+  </div>
+
+  <div class="json-viewer">
+    <div class="json-viewer-head">
+      <span>GET /api/shortlink/create</span>
+      <div class="json-viewer-actions">
+        <button type="button" data-copy="[data-shortlink-json]"><span data-i18n="btn_copy">Copy</span></button>
+      </div>
+    </div>
+    <pre data-shortlink-json>{
+  "creator": "XYCoolcraft",
+  "developer": "XYCoolcraft",
+  "version": "v1.0.0",
+  "status": true
+}</pre>
+  </div>
+</main>
+
+<script src="/shared/js/protect.js"></script>
+<script src="/shared/js/theme.js"></script>
+<script src="/shared/js/i18n.js"></script>
+<script src="/shared/js/history.js"></script>
+<script src="/shared/js/dropdown.js"></script>
+<script src="/shared/js/sidebar.js"></script>
+<script src="/shared/js/app.js"></script>
+<script src="/shortlink.js"></script>
+</body>
+</html>

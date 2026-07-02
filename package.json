@@ -1,0 +1,27 @@
+{
+  "name": "web-helper",
+  "version": "1.0.0",
+  "description": "Web Helper Ultra Modern Dashboard by XYCoolcraft",
+  "main": "machine-api/server.js",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "start": "node machine-api/server.js",
+    "build": "node scripts/build.js",
+    "start:prod": "WH_USE_DIST=1 node machine-api/server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "dotenv": "^16.4.5",
+    "axios": "^1.7.7",
+    "cheerio": "^1.0.0",
+    "qs": "^6.13.0",
+    "tough-cookie": "^5.0.0",
+    "axios-cookiejar-support": "^5.0.3",
+    "@google/genai": "^0.14.0",
+    "node-rsa": "^1.1.1",
+    "form-data": "^4.0.0"
+  }
+}

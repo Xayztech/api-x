@@ -1,0 +1,68 @@
+:root {
+  --paper: #F6F5F1;
+  --mist: #EAE8E2;
+  --mist-2: #DEDBD3;
+  --ink: #17181C;
+  --ink-soft: #4B4D55;
+  --line: #D8D5CC;
+  --beacon: #C6874A;
+  --beacon-soft: #E7C39B;
+  --beacon-ink: #40260F;
+  --ok: #4C7A5E;
+  --warn: #B24A3C;
+  --surface: #FFFFFF;
+  --surface-raised: #FBFAF8;
+  --shadow-color: 30 24 12;
+
+  --font-display: 'Space Grotesk', 'Segoe UI', sans-serif;
+  --font-body: 'Inter', 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Consolas', monospace;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-pill: 999px;
+
+  --gap-xs: 6px;
+  --gap-sm: 12px;
+  --gap-md: 20px;
+  --gap-lg: 32px;
+  --gap-xl: 56px;
+
+  --ease-out: cubic-bezier(.16,.84,.44,1);
+  --ease-spring: cubic-bezier(.34,1.56,.64,1);
+  --dur-fast: 140ms;
+  --dur-mid: 260ms;
+  --dur-slow: 420ms;
+
+  --emoji-filter: grayscale(0.35) sepia(0.18) saturate(1.4) brightness(0.95) contrast(1.05);
+  color-scheme: light;
+}
+
+html[data-theme="night"] {
+  --paper: #121318;
+  --mist: #1B1D24;
+  --mist-2: #24262F;
+  --ink: #F1EFE9;
+  --ink-soft: #ABA9A2;
+  --line: #2E313C;
+  --beacon: #E4A15C;
+  --beacon-soft: #6B4A28;
+  --beacon-ink: #FCE9D3;
+  --ok: #7FBE9B;
+  --warn: #E08672;
+  --surface: #191A21;
+  --surface-raised: #1F212A;
+  --shadow-color: 0 0 0;
+  --emoji-filter: grayscale(0.25) sepia(0.1) saturate(1.3) brightness(1.05) contrast(1.05);
+  color-scheme: dark;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

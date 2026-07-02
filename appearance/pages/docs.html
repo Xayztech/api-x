@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Docs API — Web Helper</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shared/css/tokens.css">
+<link rel="stylesheet" href="/shared/css/base.css">
+<link rel="stylesheet" href="/shared/css/layout.css">
+<link rel="stylesheet" href="/shared/css/components.css">
+<style>
+.docs-toc { position: sticky; top: 84px; }
+.docs-toc a { display: block; padding: 6px 10px; font-size: 12.5px; color: var(--ink-soft); border-radius: var(--radius-sm); }
+.docs-toc a:hover { background: var(--mist); color: var(--ink); }
+.docs-layout { display: grid; grid-template-columns: 200px 1fr; gap: var(--gap-lg); align-items: start; }
+.docs-section { margin-bottom: var(--gap-xl); scroll-margin-top: 84px; }
+.endpoint-card { border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--surface); padding: var(--gap-md); margin-bottom: var(--gap-md); }
+.endpoint-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
+.method-badge { font-family: var(--font-mono); font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: var(--radius-sm); background: var(--beacon-soft); color: var(--beacon-ink); }
+.endpoint-path { font-family: var(--font-mono); font-size: 13.5px; font-weight: 600; }
+.param-table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 10px 0; }
+.param-table th, .param-table td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); }
+.param-table th { color: var(--ink-soft); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: .04em; }
+.fallback-chain { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 11.5px; margin-top: 8px; }
+.fallback-chain span.step { background: var(--mist); padding: 4px 10px; border-radius: var(--radius-pill); }
+.fallback-chain span.arrow { color: var(--ink-soft); }
+@media (max-width: 900px) { .docs-layout { grid-template-columns: 1fr; } .docs-toc { position: static; } }
+</style>
+</head>
+<body>
+<div class="scrim" data-scrim></div>
+<header class="topbar">
+  <div class="topbar-left">
+    <button class="hamburger" data-hamburger aria-label="Menu"><span></span><span></span><span></span></button>
+    <a class="brand" href="#" data-hamburger-home>
+      <span class="brand-mark emoji">🧭</span>
+      <span data-i18n="brand_name">Web Helper</span>
+    </a>
+  </div>
+  <div class="topbar-right">
+    <div class="dropdown">
+      <button class="dropdown-trigger" type="button"><span class="emoji">🎨</span><span class="dropdown-caret">▾</span></button>
+      <div class="dropdown-panel" data-theme-panel></div>
+    </div>
+    <div class="dropdown">
+      <button class="dropdown-trigger" type="button"><span class="emoji">🌐</span><span class="dropdown-caret">▾</span></button>
+      <div class="dropdown-panel" data-lang-panel></div>
+    </div>
+  </div>
+</header>
+
+<aside class="sidebar" data-sidebar>
+  <nav>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label" data-i18n="nav_general">Umum</div>
+      <a class="sidebar-link" href="/home/id" data-match="/home"><span class="emoji">🏠</span><span data-i18n="nav_home">Dashboard</span></a>
+      <a class="sidebar-link" href="/ai/id" data-match="/ai"><span class="emoji">🤖</span><span data-i18n="nav_ai">Ai</span></a>
+      <a class="sidebar-link" href="/shortlink/id" data-match="/shortlink"><span class="emoji">🔗</span><span data-i18n="nav_shortlink">Shortlink</span></a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label" data-i18n="nav_docs">Dokumentasi</div>
+      <a class="sidebar-link active" href="/docs/id" data-match="/docs"><span class="emoji">📚</span><span data-i18n="nav_docs_api">Docs API</span></a>
+    </div>
+  </nav>
+</aside>
+
+<main class="main">
+  <h1 style="font-size: 26px; margin-bottom: 6px;">📚 Dokumentasi &amp; Referensi API</h1>
+  <p style="margin-bottom: var(--gap-lg);">Setiap fitur di Web Helper juga berfungsi sebagai REST API mentah — tanpa API key, menerima semua metode HTTP, dan bisa dipanggil langsung dari bot, aplikasi, atau skrip apa pun.</p>
+
+  <div class="docs-layout">
+    <nav class="docs-toc">
+      <a href="#pengenalan">Pengenalan</a>
+      <a href="#envelope">Format Respons</a>
+      <a href="#job-polling">Job &amp; Polling</a>
+      <a href="#youtube">YouTube</a>
+      <a href="#tiktok">TikTok</a>
+      <a href="#spotify">Spotify</a>
+      <a href="#facebook">Facebook</a>
+      <a href="#instagram">Instagram</a>
+      <a href="#twitter">Twitter / X</a>
+      <a href="#capcut">CapCut</a>
+      <a href="#image">Image Tools</a>
+      <a href="#shortlink">Shortlink</a>
+      <a href="#ai">Ai Chat</a>
+      <a href="#bahasa">Bahasa &amp; Routing</a>
+      <a href="#error">Kode Error</a>
+      <a href="#batasan">Batasan &amp; Timeout</a>
+    </nav>
+
+    <div>
+      <section class="docs-section" id="pengenalan">
+        <h2 style="font-size: 18px; margin-bottom: 8px;">Pengenalan</h2>
+        <p style="margin-bottom: 10px;">Web Helper punya dua sisi yang saling terhubung: tampilan dashboard yang bisa dipakai langsung dari browser, dan endpoint REST API mentah di balik setiap fitur. Base URL mengikuti domain tempat kamu men-deploy proyek ini, misalnya <code class="mono">https://domainkamu.com</code>.</p>
+        <p style="margin-bottom: 10px;">Pola umum endpoint download/search:</p>
+        <div class="json-viewer" style="margin-bottom: var(--gap-md);">
+          <div class="json-viewer-head"><span>Pola URL</span></div>
+          <pre>/api/{platform}/{search|download}?q={kata_kunci_atau_link}&amp;format={opsional}</pre>
+        </div>
+        <p>Semua endpoint menerima metode HTTP apa pun (GET, POST, PUT, dll) — parameter query <code class="mono">q</code> dan <code class="mono">format</code> tetap dibaca dari query string terlepas dari metode yang dipakai.</p>
+      </section>
+
+      <section class="docs-section" id="envelope">
+        <h2 style="font-size: 18px; margin-bottom: 8px;">Format Respons (Envelope)</h2>
+        <p style="margin-bottom: 10px;">Semua endpoint — tanpa kecuali — membungkus hasilnya dalam struktur JSON yang sama:</p>
+        <div class="json-viewer">
+          <div class="json-viewer-head">
+            <span>Struktur envelope</span>
+            <div class="json-viewer-actions"><button type="button" data-copy="[data-envelope-json]"><span data-i18n="btn_copy">Copy</span></button></div>
+          </div>
+          <pre data-envelope-json>{
+  "creator": "XYCoolcraft",
+  "developer": "XYCoolcraft",
+  "version": "v1.0.0",
+  "status": true,
+  "ping": "482ms",
+  "time": "2026-07-02T10:41:02.118Z",
+  "provider": "y2mate",
+  "result": {}
+}</pre>
+        </div>
+        <table class="param-table">
+          <tr><th>Field</th><th>Tipe</th><th>Keterangan</th></tr>
+          <tr><td class="mono">status</td><td>boolean</td><td>true jika berhasil, false jika seluruh provider fallback gagal</td></tr>
+          <tr><td class="mono">ping</td><td>string</td><td>Waktu proses permintaan dari server menerima hingga membalas</td></tr>
+          <tr><td class="mono">time</td><td>string (ISO 8601)</td><td>Waktu server saat respons dibuat</td></tr>
+          <tr><td class="mono">provider</td><td>string</td><td>Nama provider/sumber yang berhasil dipakai (untuk endpoint dengan fallback)</td></tr>
+          <tr><td class="mono">result</td><td>object</td><td>Data hasil — struktur berbeda tiap endpoint, lihat bagian masing-masing di bawah</td></tr>
+          <tr><td class="mono">error</td><td>string</td><td>Hanya muncul kalau status false — pesan gabungan semua provider yang gagal dicoba</td></tr>
+        </table>
+      </section>
+
+      <section class="docs-section" id="job-polling">
+        <h2 style="font-size: 18px; margin-bottom: 8px;">Job &amp; Polling (untuk proses yang lama)</h2>
+        <p style="margin-bottom: 10px;">Proses download video/audio dan olah gambar butuh waktu, dan hosting gratis (seperti Vercel Hobby) memotong request yang berjalan lebih dari beberapa detik. Untuk mengakalinya, endpoint <code class="mono">download</code> pada YouTube, Spotify, dan Image Tools tidak langsung mengembalikan hasil — melainkan sebuah <code class="mono">jobId</code> yang harus di-polling.</p>
+        <div class="step-list" style="margin-bottom: var(--gap-md);">
+          <div class="step-item"><div class="step-num">1</div><p>Panggil endpoint download seperti biasa. Responnya langsung kembali dalam hitungan milidetik berisi <code class="mono">result.jobId</code>.</p></div>
+          <div class="step-item"><div class="step-num">2</div><p>Panggil <code class="mono">GET /api/job/{jobId}</code> setiap 2–3 detik untuk mengecek status.</p></div>
+          <div class="step-item"><div class="step-num">3</div><p>Selama proses berjalan, <code class="mono">result.status</code> bernilai <code class="mono">"pending"</code>. Terus polling sampai berubah.</p></div>
+          <div class="step-item"><div class="step-num">4</div><p>Begitu selesai, <code class="mono">result.status</code> menjadi <code class="mono">"completed"</code> dan data lengkap (termasuk <code class="mono">downloadUrl</code>) ikut disertakan.</p></div>
+        </div>
+        <div class="json-viewer">
+          <div class="json-viewer-head"><span>Contoh alur job</span></div>
+          <pre>// 1) Mulai proses
+GET /api/yt/download?q=https://youtu.be/dQw4w9WgXcQ&amp;format=720
+→ { "status": true, "result": { "jobId": "m3x9k2ab", "poll": "/api/job/m3x9k2ab" } }
+
+// 2) Polling
+GET /api/job/m3x9k2ab
+→ { "status": true, "result": { "status": "pending" } }
+   ... ulangi setiap 2-3 detik ...
+→ { "status": true, "result": { "status": "completed", "title": "...", "downloadUrl": "https://..." } }</pre>
+        </div>
+        <p style="margin-top:10px;">Job disimpan di memori server selama 30 menit sejak dibuat, lalu otomatis dihapus. TikTok, Facebook, Instagram, Twitter/X, dan CapCut tidak memakai job/polling — hasilnya langsung dikembalikan di respons pertama karena sumbernya cukup cepat.</p>
+      </section>
+
+      <section class="docs-section" id="youtube">
+        <h2 style="font-size: 18px; margin-bottom: 4px;">▶️ YouTube</h2>
+        <p style="margin-bottom: 10px;">Deteksi otomatis: kalau <code class="mono">q</code> berupa link youtube.com/youtu.be, langsung diproses sebagai video. Kalau berupa teks bebas, dipakai sebagai kata kunci pencarian.</p>
+
+        <div class="endpoint-card">
+          <div class="endpoint-head"><span class="method-badge">ANY</span><span class="endpoint-path">/api/yt/search?q={kata_kunci}</span></div>
+          <p>Mengembalikan array berisi banyak video (bukan cuma satu) lengkap dengan thumbnail, channel, durasi, dan jumlah views — cocok dirender sebagai daftar hasil pencarian.</p>
+          <table class="param-table">
+            <tr><th>Param</th><th>Wajib</th><th>Keterangan</th></tr>
+            <tr><td class="mono">q</td><td>Ya</td><td>Kata kunci pencarian</td></tr>
+          </table>
+          <div class="json-viewer">
+            <pre>{
+  "result": [
+    { "videoId": "dQw4w9WgXcQ", "title": "...", "channel": "...", "url": "https://youtu.be/dQw4w9WgXcQ", "duration": "3:32", "views": "1.4B views", "thumbnail": "https://..." },
+    { "videoId": "...", "title": "...", "...": "... (bisa puluhan hasil)" }
+  ]
+}</pre>
+          </div>
+        </div>
+
+        <div class="endpoint-card">
+          <div class="endpoint-head"><span class="method-badge">ANY</span><span class="endpoint-path">/api/yt/download?q={link_atau_kata_kunci}&amp;format={format}</span></div>
+          <p><code class="mono">format</code>: <code class="mono">144</code>–<code class="mono">1080</code> untuk video mp4, atau <code class="mono">128</code>/<code class="mono">256</code>/<code class="mono">320</code> untuk audio mp3. Default <code class="mono">720</code>. Mengembalikan <code class="mono">jobId</code> — lihat bagian Job &amp; Polling.</p>
+          <p style="margin-top:8px; font-weight:600; font-size:12.5px;">Urutan fallback (dicoba berurutan sampai satu berhasil):</p>
+          <div class="fallback-chain">
+            <span class="step">1. y2mate</span><span class="arrow">→</span>
+            <span class="step">2. savetube</span><span class="arrow">→</span>
+            <span class="step">3. siputzx</span><span class="arrow">→</span>
+            <span class="step">4. flvto</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="tiktok">
+        <h2 style="font-size: 18px; margin-bottom: 4px;">🎬 TikTok</h2>
+        <div class="endpoint-card">
+          <div class="endpoint-head"><span class="method-badge">ANY</span><span class="endpoint-path">/api/tiktok/search?q={kata_kunci}</span></div>
+          <p>Mengembalikan array hasil pencarian video TikTok.</p>
+        </div>
+        <div class="endpoint-card">
+          <div class="endpoint-head"><span class="method-badge">ANY</span><span class="endpoint-path">/api/tiktok/download?q={link}</span></div>
+          <p>Mengembalikan video tanpa watermark langsung di respons pertama (tidak perlu polling).</p>
+          <div class="fallback-chain">
+            <span class="step">1. tikwm</span><span class="arrow">→</span>
+            <span class="step">2. native</span><span class="arrow">→</span>
+            <span class="step">3. tiktok-native2</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="spotify">
+        <h2 style="font-size: 18px; margin-bottom: 4px;">🎵 Spotify</h2>
+        <div class="endpoint-card">
+          <div class="endpoint-head"><span class="method-badge">ANY</span><span class="endpoint-path">/api/spotify/search?q={kata_kunci}</span></div>
+          <p>Array hasil pencarian lagu lengkap dengan metadata artis dan album.</p>
+        </div>
+        <div class="endpoint-card">
+          <div class="endpoint-head"><span class="method-badge">ANY</span><span class="endpoint-path">/api/spotify/download?q={link_track}</span></div>
+          <p>Mengembalikan <code class="mono">jobId</code> — file MP3 hasil unduhan sudah menyertakan metadata (judul, artis, thumbnail album) supaya tidak kosong saat diputar di pemutar musik manapun.</p>
+          <div class="fallback-chain">
+            <span class="step">1. spotmate</span><span class="arrow">→</span>
+            <span class="step">2. dlapi</span><span class="arrow">→</span>
+            <span class="step">3. spowload</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="facebook">
+        <h2 style="font-size: 18px; margin-bottom: 4px;">📘 Facebook</h2>
+        <div class="endpoint-card">
+          <div class="endpoint-head"><span class="method-badge">ANY</span><span class="endpoint-path">/api/facebook/download?q={link}</span></div>
+          <p>Mendukung video, reel, dan foto. Langsung dikembalikan tanpa polling.</p>
+          <div class="fallback-chain">
+            <span class="step">1. hitube</span><span class="arrow">→</span>
+            <span class="step">2. downr.org (universal)</span><span class="arrow">→</span>
+            <span class="step">3. vidssave (universal)</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="instagram">
+        <h2 style="font-size: 18px; margin-bottom: 4px;">📸 Instagram</h2>
+        <div class="endpoint-card">
+          <div class="endpoint-head"><span class="method-badge">ANY</span><span class="endpoint-path">/api/instagram/download?q={link}</span></div>
+          <p>Mendukung reel, post foto, dan carousel.</p>
+          <div class="fallback-chain">
+            <span class="step">1. downloadgram</span><span class="arrow">→</span>
+            <span class="step">2. downr.org (universal)</span><span class="arrow">→</span>
+            <span class="step">3. vidssave (universal)</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="twitter">
+        <h2 style="font-size: 18px; margin-bottom: 4px;">🐦 Twitter / X</h2>
+        <div class="endpoint-card">
+          <div class="endpoint-head"><span class="method-badge">ANY</span><span class="endpoint-path">/api/twitter/download?q={link}</span></div>
+          <p>Mendukung video dan gambar, termasuk beberapa pilihan kualitas video.</p>
+          <div class="fallback-chain">
+            <span class="step">1. savetwitter</span><span class="arrow">→</span>
+            <span class="step">2. downr.org (universal)</span><span class="arrow">→</span>
+            <span class="step">3. vidssave (universal)</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="capcut">
+        <h2 style="font-size: 18px; margin-bottom: 4px;">✂️ CapCut</h2>
+        <div class="endpoint-card">
+          <div class="endpoint-head"><span class="method-badge">ANY</span><span class="endpoint-path">/api/capcut/download?q={link_template}</span></div>
+          <p>Mengambil video mentah dari halaman template CapCut, lengkap dengan statistik (play, usage, like, comment) dan info pembuat.</p>
+          <div class="fallback-chain"><span class="step">1. capcut-official (satu-satunya sumber yang tersedia)</span></div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="image">
+        <h2 style="font-size: 18px; margin-bottom: 4px;">🖼️ Image Tools</h2>
+        <div class="endpoint-card">
+          <div class="endpoint-head"><span class="method-badge">POST</span><span class="endpoint-path">/api/image/removebg</span></div>
+          <p>Body JSON: <code class="mono">{ "base64": "...", "filename": "foto.jpg" }</code>. Mengembalikan <code class="mono">jobId</code>.</p>
+          <div class="fallback-chain"><span class="step">1. removal-ai (satu-satunya sumber yang tersedia)</span></div>
+        </div>
+        <div class="endpoint-card">
+          <div class="endpoint-head"><span class="method-badge">POST</span><span class="endpoint-path">/api/image/upscale</span></div>
+          <p>Body JSON sama seperti removebg. Skala default 2x.</p>
+          <div class="fallback-chain">
+            <span class="step">1. imglarger</span><span class="arrow">→</span>
+            <span class="step">2. picsart</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="shortlink">
+        <h2 style="font-size: 18px; margin-bottom: 4px;">🔗 Shortlink</h2>
+        <div class="endpoint-card">
+          <div class="endpoint-head"><span class="method-badge">ANY</span><span class="endpoint-path">/api/shortlink/create?url={url_panjang}</span></div>
+          <p>Mengembalikan tautan pendek dari provider yang berhasil.</p>
+        </div>
+      </section>
+
+      <section class="docs-section" id="ai">
+        <h2 style="font-size: 18px; margin-bottom: 4px;">🤖 Ai Chat</h2>
+        <div class="endpoint-card">
+          <div class="endpoint-head"><span class="method-badge">POST</span><span class="endpoint-path">/api/ai/chat</span></div>
+          <p>Body JSON: <code class="mono">{ "message": "...", "history": [...], "attachments": [...] }</code>. Menggunakan Gemini dengan rotasi API key otomatis dari <code class="mono">.env</code> — kalau satu key limit/error, otomatis lanjut ke key berikutnya secara berurutan.</p>
+          <div class="json-viewer">
+            <pre>{ "result": { "reply": "...", "model": "gemini-3.1-flash-lite" } }</pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="bahasa">
+        <h2 style="font-size: 18px; margin-bottom: 8px;">Bahasa &amp; Routing</h2>
+        <p style="margin-bottom: 10px;">Setiap halaman dashboard memakai path <code class="mono">/{halaman}/{kode_bahasa}</code>, contoh <code class="mono">/home/en</code>, <code class="mono">/downloader/youtube/ja</code>. Kode bahasa yang didukung: <code class="mono">id, en, es, fr, de, pt, ru, ar, hi, ja, ko, zh</code>.</p>
+        <p>Endpoint API (<code class="mono">/api/...</code>) <strong>tidak</strong> memakai kode bahasa — responnya selalu JSON mentah apa adanya supaya konsisten dipakai sebagai REST API dari luar.</p>
+      </section>
+
+      <section class="docs-section" id="error">
+        <h2 style="font-size: 18px; margin-bottom: 8px;">Kode Error</h2>
+        <table class="param-table">
+          <tr><th>HTTP Status</th><th>Arti</th></tr>
+          <tr><td class="mono">400</td><td>Parameter wajib tidak ada (misal <code class="mono">base64</code> kosong di Image Tools)</td></tr>
+          <tr><td class="mono">404</td><td><code class="mono">jobId</code> tidak ditemukan atau sudah kedaluwarsa (lebih dari 30 menit)</td></tr>
+          <tr><td class="mono">502</td><td>Semua provider fallback gagal — cek field <code class="mono">error</code> untuk detail pesan tiap provider</td></tr>
+        </table>
+      </section>
+
+      <section class="docs-section" id="batasan">
+        <h2 style="font-size: 18px; margin-bottom: 8px;">Batasan &amp; Timeout</h2>
+        <p style="margin-bottom: 10px;">Di hosting serverless gratis seperti Vercel Hobby, satu request maksimal berjalan sekitar 10 detik sebelum dipotong platform — walau axios di server ini di-set timeout jauh lebih lama. Karena itu proses berat (download, olah gambar) dipecah jadi job asinkron: request awal cuma beberapa milidetik untuk membuat job, lalu klien polling <code class="mono">/api/job/{jobId}</code> sampai selesai — pola ini juga dipakai persis oleh halaman dashboard-nya sendiri.</p>
+        <p>Untuk hosting VPS/dedicated tanpa batas waktu serverless, jalankan lewat <code class="mono">install.sh</code> yang sudah disediakan — tidak ada perbedaan kode, hanya cara deploy yang berbeda.</p>
+      </section>
+    </div>
+  </div>
+</main>
+
+<script src="/shared/js/protect.js"></script>
+<script src="/shared/js/theme.js"></script>
+<script src="/shared/js/i18n.js"></script>
+<script src="/shared/js/history.js"></script>
+<script src="/shared/js/dropdown.js"></script>
+<script src="/shared/js/sidebar.js"></script>
+<script src="/shared/js/app.js"></script>
+</body>
+</html>

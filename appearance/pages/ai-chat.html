@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ai Chat — Web Helper</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shared/css/tokens.css">
+<link rel="stylesheet" href="/shared/css/base.css">
+<link rel="stylesheet" href="/shared/css/layout.css">
+<link rel="stylesheet" href="/shared/css/components.css">
+</head>
+<body>
+<div class="scrim" data-scrim></div>
+<header class="topbar">
+  <div class="topbar-left">
+    <button class="hamburger" data-hamburger aria-label="Menu"><span></span><span></span><span></span></button>
+    <a class="brand" href="#" data-hamburger-home>
+      <span class="brand-mark emoji">🧭</span>
+      <span data-i18n="brand_name">Web Helper</span>
+    </a>
+  </div>
+  <div class="topbar-right">
+    <div class="dropdown">
+      <button class="dropdown-trigger" type="button"><span class="emoji">🎨</span><span class="dropdown-caret">▾</span></button>
+      <div class="dropdown-panel" data-theme-panel></div>
+    </div>
+    <div class="dropdown">
+      <button class="dropdown-trigger" type="button"><span class="emoji">🌐</span><span class="dropdown-caret">▾</span></button>
+      <div class="dropdown-panel" data-lang-panel></div>
+    </div>
+  </div>
+</header>
+
+<aside class="sidebar" data-sidebar>
+  <nav>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label" data-i18n="nav_general">Umum</div>
+      <a class="sidebar-link" href="/home/id" data-match="/home"><span class="emoji">🏠</span><span data-i18n="nav_home">Dashboard</span></a>
+      <a class="sidebar-link active" href="/ai/id" data-match="/ai"><span class="emoji">🤖</span><span data-i18n="nav_ai">Ai</span></a>
+      <a class="sidebar-link" href="/shortlink/id" data-match="/shortlink"><span class="emoji">🔗</span><span data-i18n="nav_shortlink">Shortlink</span></a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label" data-i18n="nav_downloader">Downloader</div>
+      <a class="sidebar-link" href="/downloader/youtube/id" data-match="/downloader/youtube"><span class="emoji">▶️</span> YouTube</a>
+      <a class="sidebar-link" href="/downloader/spotify/id" data-match="/downloader/spotify"><span class="emoji">🎵</span> Spotify</a>
+      <a class="sidebar-link" href="/downloader/tiktok/id" data-match="/downloader/tiktok"><span class="emoji">🎬</span> TikTok</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label" data-i18n="nav_tools">Tools</div>
+      <a class="sidebar-link" href="/tools/image/id" data-match="/tools/image"><span class="emoji">🖼️</span> Image Tools</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label" data-i18n="nav_docs">Dokumentasi</div>
+      <a class="sidebar-link" href="/docs/id" data-match="/docs"><span class="emoji">📚</span><span data-i18n="nav_docs_api">Docs API</span></a>
+    </div>
+  </nav>
+</aside>
+
+<main class="main">
+  <div class="chat-shell">
+    <div class="chat-model-row">
+      <div class="dropdown" data-attach-dropdown>
+        <button class="dropdown-trigger" type="button"><span class="emoji">📎</span><span data-i18n="btn_attach">Lampirkan</span><span class="dropdown-caret">▾</span></button>
+        <div class="dropdown-panel">
+          <button type="button" class="dropdown-option" data-pick="image"><span class="emoji">🖼️</span> <span data-i18n="attach_image">Gambar</span></button>
+          <button type="button" class="dropdown-option" data-pick="file"><span class="emoji">📄</span> <span data-i18n="attach_file">Berkas apa saja</span></button>
+        </div>
+      </div>
+      <div class="dropdown" data-model-dropdown>
+        <button class="dropdown-trigger" type="button">
+          <span class="emoji">✨</span>
+          <span data-model-label>Gemini 3.1 Flash Lite</span>
+          <span class="dropdown-caret">▾</span>
+        </button>
+        <div class="dropdown-panel" data-model-panel></div>
+      </div>
+      <input type="file" data-file-input multiple style="display:none;">
+    </div>
+
+    <div class="chat-attach-preview" data-attach-preview></div>
+
+    <div class="chat-messages" data-chat-messages>
+      <div class="msg msg-ai">Halo 👋 Aku asisten Ai kamu. Tanya apa saja, atau lampirkan gambar/berkas untuk dibahas bersama.</div>
+    </div>
+
+    <div class="chat-drop-hint" data-drop-hint>
+      <span class="emoji">📂</span> <span data-i18n="drop_hint">Tarik &amp; lepas berkas atau folder di sini (khusus Laptop/PC)</span>
+    </div>
+
+    <div class="chat-input-shell">
+      <div class="chat-input-row">
+        <textarea rows="1" placeholder="Ketik pesan…" data-i18n-placeholder="chat_placeholder" data-chat-input></textarea>
+        <button class="btn btn-primary btn-sm" type="button" data-chat-send><span class="emoji">➤</span></button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="/shared/js/protect.js"></script>
+<script src="/shared/js/theme.js"></script>
+<script src="/shared/js/i18n.js"></script>
+<script src="/shared/js/history.js"></script>
+<script src="/shared/js/dropdown.js"></script>
+<script src="/shared/js/sidebar.js"></script>
+<script src="/shared/js/app.js"></script>
+<script src="/ai-chat.js"></script>
+</body>
+</html>

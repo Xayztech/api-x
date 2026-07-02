@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instagram Downloader — Web Helper</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shared/css/tokens.css">
+<link rel="stylesheet" href="/shared/css/base.css">
+<link rel="stylesheet" href="/shared/css/layout.css">
+<link rel="stylesheet" href="/shared/css/components.css">
+</head>
+<body>
+<div class="scrim" data-scrim></div>
+<header class="topbar">
+  <div class="topbar-left">
+    <button class="hamburger" data-hamburger aria-label="Menu"><span></span><span></span><span></span></button>
+    <a class="brand" href="#" data-hamburger-home>
+      <span class="brand-mark emoji">🎬</span>
+      <span data-i18n="brand_name">Web Helper</span>
+    </a>
+  </div>
+  <div class="topbar-right">
+    <div class="dropdown">
+      <button class="dropdown-trigger" type="button"><span class="emoji">🎨</span><span class="dropdown-caret">▾</span></button>
+      <div class="dropdown-panel" data-theme-panel></div>
+    </div>
+    <div class="dropdown">
+      <button class="dropdown-trigger" type="button"><span class="emoji">🌐</span><span class="dropdown-caret">▾</span></button>
+      <div class="dropdown-panel" data-lang-panel></div>
+    </div>
+  </div>
+</header>
+
+<aside class="sidebar" data-sidebar>
+  <nav>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label" data-i18n="nav_general">Umum</div>
+      <a class="sidebar-link" href="/home/id" data-match="/home"><span class="emoji">🏠</span><span data-i18n="nav_home">Dashboard</span></a>
+      <a class="sidebar-link" href="/ai/id" data-match="/ai"><span class="emoji">🤖</span><span data-i18n="nav_ai">Ai</span></a>
+      <a class="sidebar-link" href="/shortlink/id" data-match="/shortlink"><span class="emoji">🔗</span><span data-i18n="nav_shortlink">Shortlink</span></a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label" data-i18n="nav_downloader">Downloader</div>
+      <a class="sidebar-link" href="/downloader/youtube/id" data-match="/downloader/youtube"><span class="emoji">▶️</span> YouTube</a>
+      <a class="sidebar-link" href="/downloader/spotify/id" data-match="/downloader/spotify"><span class="emoji">🎵</span> Spotify</a>
+      <a class="sidebar-link" href="/downloader/tiktok/id" data-match="/downloader/tiktok"><span class="emoji">🎬</span> TikTok</a>
+      <a class="sidebar-link" href="/downloader/instagram/id" data-match="/downloader/instagram"><span class="emoji">📸</span> Instagram</a>
+      <a class="sidebar-link" href="/downloader/facebook/id" data-match="/downloader/facebook"><span class="emoji">📘</span> Facebook</a>
+      <a class="sidebar-link" href="/downloader/capcut/id" data-match="/downloader/capcut"><span class="emoji">✂️</span> CapCut</a>
+      <a class="sidebar-link" href="/downloader/twitter/id" data-match="/downloader/twitter"><span class="emoji">🐦</span> Twitter / X</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label" data-i18n="nav_tools">Tools</div>
+      <a class="sidebar-link" href="/tools/image/id" data-match="/tools/image"><span class="emoji">🖼️</span> Image Tools</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label" data-i18n="nav_docs">Dokumentasi</div>
+      <a class="sidebar-link" href="/docs/id" data-match="/docs"><span class="emoji">📚</span><span data-i18n="nav_docs_api">Docs API</span></a>
+    </div>
+  </nav>
+</aside>
+
+<main class="main">
+  <h1 style="font-size: 24px; margin-bottom: 6px;">📸 Instagram Downloader</h1>
+  <p style="margin-bottom: var(--gap-md);" data-i18n="yt_subtitle">Tempel tautan YouTube, atau ketik kata kunci untuk mencari.</p>
+
+  <div class="segmented" data-mode style="margin-bottom: var(--gap-md);">
+    <button class="active" data-value="download" data-i18n="mode_download">Download</button>
+    <button data-value="search" data-i18n="mode_search">Search</button>
+    <button data-value="search_download" data-i18n="mode_search_download">Search + Download</button>
+  </div>
+
+  <form data-downloader-form>
+    <div class="input-row">
+      <input type="text" placeholder="https://instagram.com/reel/… atau kata kunci pencarian" data-i18n-placeholder="yt_input_placeholder" required>
+      <button class="btn btn-primary" type="submit"><span class="emoji">⚡</span> <span data-i18n="btn_process">Proses</span></button>
+    </div>
+  </form>
+
+  <div class="result-card" data-result-wrap style="margin-top: var(--gap-lg);">
+    <div class="result-thumb"><img data-result-thumb src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=480&q=60" alt=""></div>
+    <div class="result-meta">
+      <h3 data-result-title>Lo-fi Study Beats — Deep Focus Session</h3>
+      <p data-result-desc>Musik lo-fi santai untuk menemani belajar dan bekerja.</p>
+      <div class="meta-row">
+        <span>👤 <span data-result-author>Ambient Waves</span></span>
+        <span>⏱️ <span data-result-duration>07:30</span></span>
+        <span>👁️ <span data-result-views>1.204.552</span></span>
+        <span>👍 <span data-result-likes>38.204</span></span>
+        <span>🌍 <span data-result-country>ID</span></span>
+      </div>
+      <div style="display:flex; gap:8px; margin-top:6px;">
+        <button class="btn btn-ghost btn-sm" type="button" data-copy="[data-result-link]"><span class="emoji">📋</span> <span data-i18n="btn_copy_link">Copy Link</span></button>
+        <a class="btn btn-ghost btn-sm" href="https://youtu.be/dQw4w9WgXcQ" target="_blank" rel="noopener"><span class="emoji">↗️</span> <span data-i18n="btn_open_youtube">Open on YouTube</span></a>
+        <input type="hidden" data-result-link value="https://youtu.be/dQw4w9WgXcQ">
+        <button class="btn btn-primary btn-sm" type="button" data-download-btn><span class="emoji">⬇️</span> <span data-i18n="btn_download">Download</span></button>
+        <button class="btn btn-ghost btn-sm" type="button" data-play-online-btn><span class="emoji">▶️</span> <span data-i18n="btn_play_online">Putar Online</span></button>
+      </div>
+      <div data-media-slot style="margin-top: var(--gap-sm);"></div>
+    </div>
+  </div>
+  <div class="tool-grid" data-search-results style="display:none; margin-top: var(--gap-md);"></div>
+<div class="json-viewer">
+    <div class="json-viewer-head">
+      <span>GET /api/instagram/download</span>
+      <div class="json-viewer-actions">
+        <button type="button" data-copy="[data-json-output]"><span data-i18n="btn_copy">Copy</span></button>
+        <button type="button" data-json-raw-link><span data-i18n="btn_raw">Raw JSON ↗</span></button>
+      </div>
+    </div>
+    <pre data-json-output>{
+  "creator": "XYCoolcraft",
+  "developer": "XYCoolcraft",
+  "version": "v1.0.0",
+  "status": true
+}</pre>
+  </div>
+</main>
+
+<script src="/shared/js/protect.js"></script>
+<script src="/shared/js/theme.js"></script>
+<script src="/shared/js/i18n.js"></script>
+<script src="/shared/js/history.js"></script>
+<script src="/shared/js/dropdown.js"></script>
+<script src="/shared/js/sidebar.js"></script>
+<script src="/shared/js/app.js"></script>
+<script src="/shared/js/downloader-engine.js"></script>
+<script src="/downloader-instagram.js"></script>
+</body>
+</html>

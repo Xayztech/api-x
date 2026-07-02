@@ -1,0 +1,1 @@
+shopt -s dotglob extglob && unzip -o "webhelper (3).zip" "webhelper/*" -d /tmp/wh && mv /tmp/wh/webhelper/* . && rm -rf /tmp/wh && git add . && git commit -m "Add webhelper from zip" && git push

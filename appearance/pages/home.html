@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Helper — Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shared/css/tokens.css">
+<link rel="stylesheet" href="/shared/css/base.css">
+<link rel="stylesheet" href="/shared/css/layout.css">
+<link rel="stylesheet" href="/shared/css/components.css">
+</head>
+<body>
+<div class="scrim" data-scrim></div>
+<header class="topbar">
+  <div class="topbar-left">
+    <button class="hamburger" data-hamburger aria-label="Menu"><span></span><span></span><span></span></button>
+    <a class="brand" href="#" data-hamburger-home>
+      <span class="brand-mark emoji">🧭</span>
+      <span data-i18n="brand_name">Web Helper</span>
+    </a>
+  </div>
+  <div class="topbar-right">
+    <div class="dropdown">
+      <button class="dropdown-trigger" type="button"><span class="emoji">🎨</span><span class="dropdown-caret">▾</span></button>
+      <div class="dropdown-panel" data-theme-panel></div>
+    </div>
+    <div class="dropdown">
+      <button class="dropdown-trigger" type="button"><span class="emoji">🌐</span><span class="dropdown-caret">▾</span></button>
+      <div class="dropdown-panel" data-lang-panel></div>
+    </div>
+  </div>
+</header>
+
+<aside class="sidebar" data-sidebar>
+  <nav>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label" data-i18n="nav_general">Umum</div>
+      <a class="sidebar-link active" href="/home/id" data-match="/home"><span class="emoji">🏠</span><span data-i18n="nav_home">Dashboard</span></a>
+      <a class="sidebar-link" href="/ai/id" data-match="/ai"><span class="emoji">🤖</span><span data-i18n="nav_ai">Ai</span></a>
+      <a class="sidebar-link" href="/shortlink/id" data-match="/shortlink"><span class="emoji">🔗</span><span data-i18n="nav_shortlink">Shortlink</span></a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label" data-i18n="nav_downloader">Downloader</div>
+      <a class="sidebar-link" href="/downloader/youtube/id" data-match="/downloader/youtube"><span class="emoji">▶️</span> YouTube</a>
+      <a class="sidebar-link" href="/downloader/spotify/id" data-match="/downloader/spotify"><span class="emoji">🎵</span> Spotify</a>
+      <a class="sidebar-link" href="/downloader/tiktok/id" data-match="/downloader/tiktok"><span class="emoji">🎬</span> TikTok</a>
+      <a class="sidebar-link" href="/downloader/instagram/id" data-match="/downloader/instagram"><span class="emoji">📸</span> Instagram</a>
+      <a class="sidebar-link" href="/downloader/facebook/id" data-match="/downloader/facebook"><span class="emoji">📘</span> Facebook</a>
+      <a class="sidebar-link" href="/downloader/capcut/id" data-match="/downloader/capcut"><span class="emoji">✂️</span> CapCut</a>
+      <a class="sidebar-link" href="/downloader/twitter/id" data-match="/downloader/twitter"><span class="emoji">🐦</span> Twitter / X</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label" data-i18n="nav_tools">Tools</div>
+      <a class="sidebar-link" href="#"><span class="emoji">🖼️</span> Image Tools</a>
+      <a class="sidebar-link" href="#"><span class="emoji">📝</span> Transcribe</a>
+      <a class="sidebar-link" href="#"><span class="emoji">🔍</span> Search Engine</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label" data-i18n="nav_docs">Dokumentasi</div>
+      <a class="sidebar-link" href="/docs/id" data-match="/docs"><span class="emoji">📚</span><span data-i18n="nav_docs_api">Docs API</span></a>
+    </div>
+  </nav>
+</aside>
+
+<main class="main">
+  <section class="card" style="animation-delay:.02s; padding: var(--gap-xl) var(--gap-lg); margin-bottom: var(--gap-lg);">
+    <h1 style="font-size: 32px; margin-bottom: 10px;" data-i18n="home_title">Satu pintu untuk semua kebutuhan digital-mu.</h1>
+    <p style="max-width: 560px; font-size: 15px;" data-i18n="home_subtitle">Downloader, pencarian, shortlink, dan asisten Ai — dirapikan dalam satu ruang kerja yang tenang.</p>
+  </section>
+
+  <div class="status-strip">
+    <div class="status-item"><span class="status-dot"></span> YouTube <span class="mono">18ms</span></div>
+    <div class="status-item"><span class="status-dot"></span> Spotify <span class="mono">44ms</span></div>
+    <div class="status-item"><span class="status-dot"></span> TikTok <span class="mono">61ms</span></div>
+    <div class="status-item"><span class="status-dot warn"></span> Instagram <span class="mono">210ms</span></div>
+    <div class="status-item"><span class="status-dot"></span> Ai Engine <span class="mono">92ms</span></div>
+  </div>
+
+  <h2 style="font-size: 17px; margin-bottom: var(--gap-sm);" data-i18n="home_category">Kategori</h2>
+  <div class="tool-grid">
+    <a class="tool-card" href="/downloader/youtube/id">
+      <div class="tool-card-icon emoji">▶️</div>
+      <h3>YouTube</h3>
+      <p data-i18n="card_youtube_desc">Unduh video, audio, atau cari konten langsung dari YouTube.</p>
+    </a>
+    <a class="tool-card" href="/ai/id">
+      <div class="tool-card-icon emoji">🤖</div>
+      <h3 data-i18n="nav_ai">Ai Chat</h3>
+      <p data-i18n="card_ai_desc">Ngobrol dengan asisten Ai, kirim gambar atau berkas apa pun.</p>
+    </a>
+    <a class="tool-card" href="/shortlink/id">
+      <div class="tool-card-icon emoji">🔗</div>
+      <h3 data-i18n="nav_shortlink">Shortlink</h3>
+      <p data-i18n="card_shortlink_desc">Persingkat tautan panjang jadi ringkas dalam sekali klik.</p>
+    </a>
+    <a class="tool-card" href="/downloader/spotify/id">
+      <div class="tool-card-icon emoji">🎵</div>
+      <h3>Spotify</h3>
+      <p data-i18n="card_spotify_desc">Cari dan unduh lagu lengkap dengan metadata dan sampul.</p>
+    </a>
+    <a class="tool-card" href="/tools/image/id">
+      <div class="tool-card-icon emoji">🖼️</div>
+      <h3 data-i18n="card_image_title">Image Tools</h3>
+      <p data-i18n="card_image_desc">Hapus latar, tingkatkan resolusi, dan perbaiki wajah buram.</p>
+    </a>
+    <a class="tool-card" href="/downloader/tiktok/id">
+      <div class="tool-card-icon emoji">🎬</div>
+      <h3>TikTok</h3>
+      <p>Unduh video TikTok tanpa watermark dalam sekejap.</p>
+    </a>
+    <a class="tool-card" href="/downloader/instagram/id">
+      <div class="tool-card-icon emoji">📸</div>
+      <h3>Instagram</h3>
+      <p>Simpan reel, foto, dan carousel Instagram dengan mudah.</p>
+    </a>
+    <a class="tool-card" href="/downloader/facebook/id">
+      <div class="tool-card-icon emoji">📘</div>
+      <h3>Facebook</h3>
+      <p>Unduh video dan reel Facebook langsung dari tautan.</p>
+    </a>
+    <a class="tool-card" href="/downloader/capcut/id">
+      <div class="tool-card-icon emoji">✂️</div>
+      <h3>CapCut</h3>
+      <p>Ambil video mentah dari template CapCut favoritmu.</p>
+    </a>
+    <a class="tool-card" href="/downloader/twitter/id">
+      <div class="tool-card-icon emoji">🐦</div>
+      <h3>Twitter / X</h3>
+      <p>Unduh video dan gambar dari postingan X/Twitter.</p>
+    </a>
+    <a class="tool-card" href="/docs/id">
+      <div class="tool-card-icon emoji">📚</div>
+      <h3 data-i18n="nav_docs_api">Docs API</h3>
+      <p data-i18n="card_docs_desc">Pelajari cara memakai setiap endpoint sebagai REST API.</p>
+    </a>
+  </div>
+</main>
+
+<script src="/shared/js/protect.js"></script>
+<script src="/shared/js/theme.js"></script>
+<script src="/shared/js/i18n.js"></script>
+<script src="/shared/js/history.js"></script>
+<script src="/shared/js/dropdown.js"></script>
+<script src="/shared/js/sidebar.js"></script>
+<script src="/shared/js/app.js"></script>
+</body>
+</html>
